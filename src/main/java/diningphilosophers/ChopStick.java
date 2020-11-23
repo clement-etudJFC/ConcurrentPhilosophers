@@ -20,20 +20,27 @@ public class ChopStick {
         if(iAmFree){
             iAmFree = false;
             this.philosophe = philosophe;
-            System.out.println(this.toString()+" prise par "+philosophe.getName());
+            System.out.println("*"+this.toString()+" prise par "+philosophe.getName()+"*");
             return true;
         }else{
+            System.out.println(philosophe.getName()+" a essayé de prendre la baguette "+this.toString()+" déjà prise par "+this.philosophe.getName());
             return false;
         }
     }
     // Retourne faux si la baguette était libre ou si le mauvais philosophe tente de poser la baguette
     // Retourne vrai si la baguette n'était pas libre, la fait passer en état "libre"
     public boolean release(Philosopher philosophe){
-        if(!iAmFree && philosophe == this.philosophe){
-            iAmFree = true;
-            System.out.println(this.toString()+" lâchée par "+philosophe.getName());
-            return true;
+        if(!iAmFree){
+            if(philosophe == this.philosophe){
+                iAmFree = true;
+                System.out.println("*"+this.toString()+" lâchée par "+philosophe.getName()+"*");
+                return true;
+            }else{
+                System.out.println(philosophe.getName()+" a essayé de lâcher la baguette "+this.toString()+" tenue par "+this.philosophe.getName()+" !");
+                return false;
+            }
         }else{
+            System.out.println(philosophe.getName()+" a essayé de lâcher la baguette "+this.toString()+" libre !");
             return false;
         }
     }
